@@ -1,0 +1,3 @@
+[submodule "assets/jsPsych"]
+	path = assets/jsPsych
+	url = https://github.com/jspsych/jsPsych.git
