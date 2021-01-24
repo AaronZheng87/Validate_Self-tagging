@@ -1,3 +1,6 @@
 [submodule "assets/jsPsych"]
 	path = assets/jsPsych
 	url = https://github.com/jspsych/jsPsych.git
+[submodule "assets/psychophysics"]
+	path = assets/psychophysics
+	url = https://github.com/kurokida/jspsych-psychophysics.git
