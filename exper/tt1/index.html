@@ -2,18 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src='jspsych-6.1.0/jspsych.js'></script>
-    <script src='jspsych-6.1.0/plugins/jspsych-html-keyboard-response.js'></script>
-    <script src='jspsych-6.1.0/plugins/jspsych-survey-text.js'></script>
-    <script src='jspsych-6.1.0/plugins/jspsych-html-button-response.js'></script>
-    <script src="jspsych-6.1.0/plugins/jspsych-image-keyboard-response.js"></script>
-    <script src="jspsych-6.1.0/plugins/jspsych-survey-html-form.js"></script>
-    <script src="jspsych-6.1.0/plugins/jspsych-instructions.js"></script>
-    <link href="jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css">
-    </link>
-    <script src="jspsych-6.1.0/plugins/jspsych-fullscreen.js"></script>
-    <link href="jspsych-6.1.0/css/jspsych.css" rel="stylesheet" type="text/css">
-    <script src="jspsych-6.1.0/plugins/jspsych-psychophysics.js"></script>
+    <script src='../../assets/jsPsych/jspsych.js'></script>
+    <script src='../../assets/jsPsych/plugins/jspsych-html-keyboard-response.js'></script>
+    <script src='../../assets/jsPsych/plugins/jspsych-survey-text.js'></script>
+    <script src='../../assets/jsPsych/plugins/jspsych-html-button-response.js'></script>
+    <script src="../../assets/jsPsych/plugins/jspsych-image-keyboard-response.js"></script>
+    <script src="../../assets/jsPsych/plugins/jspsych-survey-html-form.js"></script>
+    <script src="../../assets/jsPsych/plugins/jspsych-instructions.js"></script>
+    <script src="../../assets/jsPsych/plugins/jspsych-fullscreen.js"></script>
+    <link href="../../assets/jsPsych/css/jspsych.css" rel="stylesheet" type="text/css">
+    <script src="../../assets/psychophysics/jspsych-psychophysics.js"></script>
     <style>
         .add_{
             font-size: 25px;
@@ -67,6 +65,7 @@
 <script>
     let img = ["img/C.bmp", "img/P.bmp", "img/Tra.bmp"];
     let word = ["好人", "坏人", "常人"];
+    let aaaaa = 0; // 0 为练习，1为正式一，以此类推
 
     let b = []; //stimulate null
     // let i1 = jsPsych.randomization.sampleWithoutReplacement(img, 3);
@@ -685,7 +684,8 @@
         html:"<p><input name='Q0' type='number' value='0001;' required/></p>",
         button_label:"继续",
         on_finish: function addRespFromSurvey(data) {
-            data.response = parseInt(data.button_pressed) + 1
+            data.response = parseInt(data.button_pressed) + 1;
+            data.save = true;
         }
     };
     let subjectnumber ={
@@ -697,13 +697,15 @@
         html:"<p><input name='Q0' type='number' value='0001' required/></p>",
         button_label:"继续",
         on_finish: function addRespFromSurvey(data) {
-            data.response = parseInt(data.button_pressed) + 1
+            data.response = parseInt(data.button_pressed) + 1;
+            data.save = true;
         }
     };
     let number_of_experiment ={
         type:"survey-html-form",
         data:{
             varname:'number_of_experiment',
+            save: true
         },
 
         preamble:"<p style = 'color : white'>你的实验次数是</p>",
@@ -722,7 +724,8 @@
         stimulus: "<p style = 'color : white'>你的性别</p>",
         choices: ['男', '女', '其他'],
         on_finish: function addRespFromSurvey(data) {
-            data.response = parseInt(data.button_pressed) + 1
+            data.response = parseInt(data.button_pressed) + 1;
+            data.save = true;
         }
     };
     let birth = {
@@ -736,7 +739,8 @@
     oninput="if(value.length>4) value=value.slice(0,4)" required /></p>`,
         button_label: '继续',
         on_finish: function addRespFromSurvey(data) {
-            data.response = parseInt(data.button_pressed) + 1
+            data.response = parseInt(data.button_pressed) + 1;
+            data.save = true;
         }
     };
     let education = {
@@ -762,6 +766,7 @@
             let bodyNode = document.getElementsByTagName("body");
             for (let i = 0; i < bodyNode.length; i++) {
                 bodyNode[i].style.cursor = "none";}
+            data.save = true;
 
         }
     };
@@ -787,7 +792,7 @@
         stimulus: function () {
             let key = jsPsych.data.get().last(1).values()[0].key_press;
             let last_trial_accuracy = jsPsych.data.get().last(1).values()[0].correct;
-            let time = jsPsych.data.get().last(1).values()[0].rt;
+            // let time = jsPsych.data.get().last(1).values()[0].rt;
             if (last_trial_accuracy && key) {
                 return "<span class='add_' style='color: #adff87;'> correct! </span>"
             } else if (!key) {
@@ -844,7 +849,9 @@
                 shape: t,//刺激类型
                 word: w,//words
                 key: key.correct_response,
-                test_part: key.test_part + frequency
+                test_part: key.test_part + frequency,
+                save: true,
+                trial: aaaaa
             }
         },
         on_finish: function (data) {
@@ -874,6 +881,7 @@
                     timeline: [feedback_all, rest, trial2, rest1, trial2, rest1, trial2]
                 }, jsPsych.resumeExperiment);
             } else {
+                aaaaa = 0;
                 jsPsych.pauseExperiment();
                 jsPsych.addNodeToEndOfTimeline({
                     timeline: [feedback_all, error1,instructions1, trial1]
@@ -886,6 +894,7 @@
     let feedback_all = {
         type: "html-keyboard-response",
         stimulus: function () {
+            // aaaaa = 1;
             frequency -= 1;
             let trials = jsPsych.data.get().filter({
                 test_part: 'test' + frequency
@@ -915,6 +924,7 @@
                 trial_duration: 10000, // 休息时间
                 stimulus: "休息一下<span id='iii'>10</span>秒",
                 on_load: function() {
+                    aaaaa += 1;
                     let reduce = function () {
                         if (document.getElementById("iii").innerText > 1) {
                             document.getElementById("iii").innerText = (parseInt(document.getElementById("iii").innerText) - 1).toString();
@@ -946,7 +956,7 @@
             document.getElementById("jspsych-content").innerHTML = "<div><p style = 'color:white; font-size = 20px'>实验结束，非常感谢您的参与！</p >" +
                 "<p style = 'color:white; font-size = 20px'>如果您对实验结果感兴趣，可以发邮件与我联系。</p >" +
                 "<p style = 'color:white; font-size = 20px'>郑元瑞（Email: aaronzheng87@gmail.com） </p ></div>";
-            jsPsych.data.get().localSave('csv', 'data.csv');
+            jsPsych.data.get().filter({save: true}).localSave('csv', 'data.csv');
             document.exitFullscreen();
             let bodyNode = document.getElementsByTagName("body");
             for (let i = 0; i < bodyNode.length; i++) {
