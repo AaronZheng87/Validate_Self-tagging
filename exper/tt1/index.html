@@ -663,8 +663,9 @@
                 您数据的隐私部分（包括姓名，联系方式等）将至少被安全保存<X>年。这样的话，如果研究人员在您的脑部扫描数据中发现某些具有诊断价值的信息，我们能够与您取得联系。在该期限后，我们将会销毁这些信息以保护您的隐私。<br/>\
                 <strong>是否让我们使用及分享您的数据将完全由您自愿决定。但是，参加本研究的前提是您愿意使用这种方式来分享您的数据。如果您不愿意，您将无法参加这项研究。</strong><br/>\
                 如果您在下方签名，代表您同意向未来的研究共享您的数据，同意与来自世界各地研究机构的研究者共享您的数据。这些未来研究的细节、结果和应用均是未知的。<br/>\
-                </p><p style= 'text-align:center; font-weight:700; font-size:15px; color : lightgreen'>同意请按“继续”进入实验 </p><br/>\
-                <button class=\"jspsych-btn\" onClick=\" window.location = 'https://www.baidu.com'; \" >退出实验</button>\
+                </p><p style= 'text-align:center; font-weight:700; font-size:15px; color : lightgreen'>同意请按“继续”并进入实验 </p><br/>\
+            </p><p style= 'text-align:center; font-weight:700; font-size:15px; color : red'>不同意请按“退出”键即可退出实验 </p><br/>\
+                <button class=\"jspsych-btn\" onClick=\" window.location = 'https://www.baidu.com'; \" >退出</button>\
                 "
 
         ],
@@ -914,7 +915,8 @@
 
     let rest = {
         type: "html-keyboard-response",
-        stimulus: "<p style = 'color : white; font-size = 60px'>按任意键开始正式实验</p><div>",
+        stimulus: "<p style = 'color : white; font-size = 30px'>按任意键开始正式实验</p>",
+        on_finish: function(){ aaaaa +=1 },
         post_trial_gap:2000
 
     }; // 休息阶段
@@ -923,7 +925,7 @@
             {
                 type: "html-keyboard-response",
                 trial_duration: 10000, // 休息时间
-                stimulus: "休息一下<span id='iii'>10</span>秒",
+                stimulus: "<p style = 'color: white; font-size = 30px' >休息一下<span id='iii'>10</span>秒</p>",
                 on_load: function() {
                     aaaaa += 1;
                     let reduce = function () {
@@ -938,7 +940,7 @@
             },
             {
                 type: "html-keyboard-response",
-                stimulus: "休息一下",
+                stimulus: "<p style = 'color : white; font-size = 30px'>休息结束，请按任意键开始实验</p>",
                 choices: jsPsych.ALL_KEYS
             }
         ]
