@@ -64,8 +64,8 @@
 <body style="text-align:center;">
 </body>
 <script>
-    let debug_round = 2;
-    let acc = 0.4;
+    let debug_round = 5;
+    let acc = 0.6;// 60进入正式实验
 
 
 
@@ -893,7 +893,7 @@
             } else if (accuracy >= acc && frequency >=2) {
                 jsPsych.pauseExperiment();
                 jsPsych.addNodeToEndOfTimeline({
-                    timeline: [feedback_all, rest, trial2, rest1, trial2, rest1, trial2]
+                    timeline: [feedback_all, rest, trial2, rest1, trial2, rest1, trial2, rest1, trial2, rest1, trial2, rest1, trial2]
                 }, jsPsych.resumeExperiment);
             } else {
                 aaaaa = 0;
