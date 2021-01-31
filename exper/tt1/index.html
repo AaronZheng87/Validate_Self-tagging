@@ -63,6 +63,12 @@
 <body style="text-align:center;">
 </body>
 <script>
+    let debug_round = 2;
+    let acc = 0.3;
+
+
+
+
     let img = ["img/C.bmp", "img/S.bmp", "img/T.bmp"];
     let word = ["好人", "坏人", "常人"];
     let aaaaa = 0; // 0 为练习，1为正式一，以此类推
@@ -70,91 +76,93 @@
     let b = []; //stimulate null
     // let i1 = jsPsych.randomization.sampleWithoutReplacement(img, 3);
     // 1
+    let block_name = "prac_";
     let i1 = [], sti = [];
+    let answer = jsPsych.randomization.sampleWithoutReplacement(["m", "n"], 2);
     i1 = [img[0], img[1], img[2]];
     b.push({
         stimulus: i1[0],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[0],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[1],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[2],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[0],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[1],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[1],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[2],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[0],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[1],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[2],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[2],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     });
     sti.push(b);
@@ -166,84 +174,84 @@
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[0],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[1],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[2],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[0],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[1],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[1],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[2],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[0],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[1],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[2],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[2],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     });
     sti.push(b);
@@ -255,84 +263,84 @@
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[0],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[1],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[2],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[0],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[1],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[1],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[2],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[0],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[1],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[2],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[2],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     });
     sti.push(b);
@@ -344,84 +352,84 @@
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[0],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[1],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[2],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[0],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[1],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[1],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[2],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[0],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[1],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[2],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[2],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     });
     sti.push(b);
@@ -433,84 +441,84 @@
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[0],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[1],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[2],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[0],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[1],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[1],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[2],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[0],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[1],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[2],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[2],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     });
     sti.push(b);
@@ -522,84 +530,84 @@
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[0],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[1],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[2],
         item: word[0],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[0],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[1],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[1],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[2],
         item: word[1],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[0],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[1],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "n"
+            correct_response: answer[1]
         }
     }, {
         stimulus: i1[2],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     }, {
         stimulus: i1[2],
         item: word[2],
         data: {
             test_part: "test",
-            correct_response: "m"
+            correct_response: answer[0]
         }
     });
     sti.push(b);
@@ -649,22 +657,23 @@
     let instr = {
         type: "instructions",
         pages: [
-            "<p style= 'text-align: center; font-weight:700; font-size:25px; color : white'>知情同意书 </p><br/>\
+            "<div style='padding-inline:200px;'>\
+            <p style= 'text-align: center; font-weight:700; font-size:25px; color : white'>知情同意书 </p><br/>\
              <p style='text-align: left; color : white'>\
              您在本研究中所提供的数据和样本未来可能会被其他研究项目使用。未来的这些项目也许会与本研究的问题相关，也有可能无关。通过互联网和完全公开的数据库，我们将完全共享本次研究中的数据，包括脑影像数据。<br/>\
              共享的数据中不会出现您的姓名，而仅以代号显示，所以他人不会获知您的姓名，也无法将数据与您进行对应。此外，我们也将对其他敏感信息进行保密，避免了解您的人通过某些信息猜测到哪些是您的数据。<br/><br/>\
              如果您改变主意并想将此同意书撤回（您可以通过拨打『某号码』致电『本研究的主要负责人PI XXXX』来执行此操作），我们将不会录入关于您的任何额外数据。如果您在数据被录入数据库之前申请撤回，您的数据将能够被及时删除。<strong>请注意，所有已经共享给其他研究者或公众的数据和研究结果将不能够再被销毁，退出或撤回。</strong><br/>\
              同意参与本研究，意味着您将给那些可能有助于人类的研究提供一份免费而慷慨的礼物。极有可能，使用您所共享数据的研究会开发出新的研究人脑的技术、新的诊断量表、新药物或其他产出。但是如果出现这些情况，您本人不会得到这些产品所带来的任何利润，也不会获得这些产品的任何所有权。<br/>\
-         </p><p style= 'text-align:center; font-weight:700; font-size:15px; color : lightgreen'>同意请按“继续”并进入下一页 </p><br/>",
-            "<p style= 'text-align: center; font-weight:700; font-size:25px; color : white'>知情同意书 </p><br/>\
+         </p></div><p style= 'text-align:center; font-weight:700; font-size:15px; color : lightgreen'>同意请按“继续”并进入下一页 </p><br/>",
+            "<div style='padding-inline:200px;'>\
+            <p style= 'text-align: center; font-weight:700; font-size:25px; color : white'>知情同意书 </p><br/>\
                 <p style='text-align: left; color : white'>\
-                根据我们充分了解到的情况，<strong>我们向公众共享的数据中将不会包含能够直接识别出您身份的信息。**数据中没有您的名字、只有编码的数字，因此他人不会知道您的名字或者知道哪个数据是您。此外，数据中不会包括我们认为可能会让了解您的人猜测到哪个数据属于您的信息，比如您的面部特征或参与研究的日期等。如果我们就本研究撰写报告、文章，或者将本次研究的数据分享给他人，我们也将确保您不会被识别出来。</strong><br/>\
                 根据我们充分了解到的情况，<strong>我们向公众共享的数据中将不会包含能够直接识别出您身份的信息。**数据中没有您的名字、只有编码的数字，因此他人不会知道您的名字或者知道哪个数据是您。此外，数据中不会包括我们认为可能会让了解您的人猜测到哪个数据属于您的信息，比如您的面部特征或参与研究的日期等。如果我们就本研究撰写报告、文章，或者将本次研究的数据分享给他人，我们也将确保您不会被识别出来。</strong><br/>\
                 您数据的隐私部分（包括姓名，联系方式等）将至少被安全保存<X>年。这样的话，如果研究人员在您的脑部扫描数据中发现某些具有诊断价值的信息，我们能够与您取得联系。在该期限后，我们将会销毁这些信息以保护您的隐私。<br/>\
                 <strong>是否让我们使用及分享您的数据将完全由您自愿决定。但是，参加本研究的前提是您愿意使用这种方式来分享您的数据。如果您不愿意，您将无法参加这项研究。</strong><br/>\
                 如果您在下方签名，代表您同意向未来的研究共享您的数据，同意与来自世界各地研究机构的研究者共享您的数据。这些未来研究的细节、结果和应用均是未知的。<br/>\
-                </p><p style= 'text-align:center; font-weight:700; font-size:15px; color : lightgreen'>同意请按“继续”并进入实验 </p><br/>\
-            </p><p style= 'text-align:center; font-weight:700; font-size:15px; color : red'>不同意请按“退出”键即可退出实验 </p><br/>\
+                </p></div><p style= 'text-align:center; font-weight:700; font-size:15px; color : lightgreen'>同意请按“继续”并进入实验 </p>\
+            <p style= 'text-align:center; font-weight:700; font-size:15px; color : red'>不同意请按“退出”键即可退出实验 </p><br/>\
                 <button class=\"jspsych-btn\" onClick=\" window.location = 'https://www.baidu.com'; \" >退出</button>\
                 "
 
@@ -781,7 +790,7 @@
             "<p style= 'text-align: center; font-weight:700; font-size:35px; color : white'>" + sti[k][0].item + "---" + (sti[k][0].stimulus.indexOf("C")!==-1 ? "圆形" : (sti[k][0].stimulus.indexOf("P")!==-1 ? "五边形" : "梯形")) + "</p>" +
             "<p style= 'text-align: center; font-weight:700; font-size:35px; color : white'>" + sti[k][5].item + "---" + (sti[k][5].stimulus.indexOf("C")!==-1 ? "圆形" : (sti[k][5].stimulus.indexOf("P")!==-1 ? "五边形" : "梯形")) + "</p>"+
             "<p style= 'text-align: center; font-weight:700; font-size:35px; color : white'>" + sti[k][11].item + "---" + (sti[k][11].stimulus.indexOf("C")!==-1 ? "圆形" : (sti[k][11].stimulus.indexOf("P")!==-1 ? "五边形" : "梯形")) + "</p>" +
-            "<p style= 'text-align: center; font-weight:700; font-size:25px; color : white'>您需要通过练习来学习这些对应关系；接下来，如果屏幕上出现的图形和文字符合上述关系，请按“M”键；如果图形与文字不符合上述的关系，请按“N”键。请您又快又准地进行反应</p>"+
+            "<p style= 'text-align: center; font-weight:700; font-size:25px; color : white'>您需要通过练习来学习这些对应关系；接下来，如果屏幕上出现的图形和文字符合上述关系，请按“"+answer[0]+"”键；如果图形与文字不符合上述的关系，请按“"+answer[1]+"”键。请您又快又准地进行反应</p>"+
             "<p style = 'color : lightgreen; font-size:25px'>按任意键开始实验</p><div>",
         post_trial_gap: 2000
     };
@@ -840,7 +849,7 @@
                 show_end_time: 1100
             }
         ],
-        choices: ["m", "n"],
+        choices: [answer[0], answer[1]],
         canvas_height:900,
         response_start_time: 1000,
         data: function () {
@@ -853,7 +862,10 @@
                 key: key.correct_response,
                 test_part: key.test_part + frequency,
                 save: true,
-                trial: aaaaa
+                trial: aaaaa,
+                label: w,
+                label_en: (w === "好人") ? "good" : ((w === "坏人") ? "bad" : "ordinary"),
+                block: block_name + aaaaa.toString()
             }
         },
         on_finish: function (data) {
@@ -875,9 +887,9 @@
             let accuracy = jsPsych.data.get().filter({correct: true, test_part: "test" + frequency}).count() / jsPsych.data.get().filter({test_part: "test" + frequency}).count();
             console.log(accuracy);
             frequency += 1;
-            if (accuracy <= 0.6 && frequency<=1) {
+            if (accuracy <= acc && frequency<=1) {
                 return true;
-            } else if (accuracy >= 0.6 && frequency >=2) {
+            } else if (accuracy >= acc && frequency >=2) {
                 jsPsych.pauseExperiment();
                 jsPsych.addNodeToEndOfTimeline({
                     timeline: [feedback_all, rest, trial2, rest1, trial2, rest1, trial2]
@@ -916,7 +928,7 @@
     let rest = {
         type: "html-keyboard-response",
         stimulus: "<p style = 'color : white; font-size = 30px'>按任意键开始正式实验</p>",
-        on_finish: function(){ aaaaa +=1 },
+        on_finish: function(){ aaaaa +=1; block_name = "test_"; },
         post_trial_gap:2000
 
     }; // 休息阶段
@@ -949,12 +961,12 @@
         timeline: [plus1,feedback_trial],
         timeline_variables: test_stimuli,
         randomize_order: true,
-        repetitions: 4
+        repetitions: debug_round
     };//正式实验
 
     jsPsych.init({
         timeline: timeline,
-        preload_images: ["img/P.bmp", "img/C.bmp", "img/Tra.bmp"],
+        preload_images: img,
         on_finish: function () {
             document.getElementById("jspsych-content").innerHTML = "<div><p style = 'color:white; font-size = 20px'>实验结束，非常感谢您的参与！</p >" +
                 "<p style = 'color:white; font-size = 20px'>如果您对实验结果感兴趣，可以发邮件与我联系。</p >" +
