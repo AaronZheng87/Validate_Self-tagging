@@ -77,7 +77,7 @@
     let b = []; //stimulate null
     // let i1 = jsPsych.randomization.sampleWithoutReplacement(img, 3);
     // 1
-    let block_name = "prac_";
+    let block_name = "prac";
     let i1 = [], sti = [];
     let answer = jsPsych.randomization.sampleWithoutReplacement(["m", "n"], 2);
     i1 = [img[0], img[1], img[2]];
@@ -615,6 +615,8 @@
     b = [];
     console.log(sti);
 
+    let round_all = 0;
+
 
     // console.log(b);
     // sti 0 - 5
@@ -854,11 +856,13 @@
         canvas_height:900,
         response_start_time: 1000,
         data: function () {
+            round_all += 1;
             let t = jsPsych.timelineVariable("stimulus", true);
             let w = jsPsych.timelineVariable("item", true);
             let key = jsPsych.timelineVariable("data", true);
             return {
                 shape: t,//刺激类型
+                shape_en: (t.indexOf("C")!==-1 ? "circular" : (t.indexOf("S")!==-1 ? "square" : "triangle")),
                 word: w,//words
                 key: key.correct_response,
                 test_part: key.test_part + frequency,
@@ -866,7 +870,11 @@
                 trial: aaaaa,
                 label: w,
                 label_en: (w === "好人") ? "good" : ((w === "坏人") ? "bad" : "ordinary"),
-                block: block_name + aaaaa.toString()
+                block: block_name + "_" + aaaaa.toString(),
+                block_id: aaaaa.toString(), // block 出现的顺序
+                trial_id: (round_all - 1) % 12 + 1, // 每个block里试次出现的顺序
+                block_type: block_name, // prac test 练习还是正式实验
+                trial_type_num: parseInt(round_all/12) + 1, //记录试次循环
             }
         },
         on_finish: function (data) {
@@ -885,12 +893,12 @@
         timeline_variables: test_stimuli,
         randomize_order: true,
         loop_function: function () {
-            let accuracy = jsPsych.data.get().filter({correct: true, test_part: "test" + frequency}).count() / jsPsych.data.get().filter({test_part: "test" + frequency}).count();
+            let accuracy = jsPsych.data.get().filter({correct: true, test_part: "test" + (frequency)}).count() / jsPsych.data.get().filter({test_part: "test" + (frequency)}).count();
             console.log(accuracy);
             frequency += 1;
             if (accuracy <= acc && frequency<=1) {
                 return true;
-            } else if (accuracy >= acc && frequency >=2) {
+            } else if (accuracy >= acc) {
                 jsPsych.pauseExperiment();
                 jsPsych.addNodeToEndOfTimeline({
                     timeline: [feedback_all, rest, trial2, rest1, trial2, rest1, trial2, rest1, trial2, rest1, trial2, rest1, trial2]
@@ -900,7 +908,7 @@
                 jsPsych.pauseExperiment();
                 jsPsych.addNodeToEndOfTimeline({
                     timeline: [feedback_all, error1,instructions1, trial1]
-                }, jsPsych.resumeExperiment);
+                }, function(){ jsPsych.resumeExperiment(); aaaaa += 1; });
             }
         }
     };
@@ -929,7 +937,7 @@
     let rest = {
         type: "html-keyboard-response",
         stimulus: "<p style = 'color : white; font-size = 30px'>按任意键开始正式实验</p>",
-        on_finish: function(){ aaaaa +=1; block_name = "test_"; },
+        on_finish: function(){ aaaaa =1; block_name = "test"; round_all=0; },
         post_trial_gap:2000
 
     }; // 休息阶段
