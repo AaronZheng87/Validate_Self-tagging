@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="../../assets/js/jquery.js"></script>
     <script src='../../assets/jsPsych/jspsych.js'></script>
     <script src='../../assets/jsPsych/plugins/jspsych-html-keyboard-response.js'></script>
     <script src='../../assets/jsPsych/plugins/jspsych-survey-text.js'></script>
@@ -12,6 +13,10 @@
     <script src="../../assets/jsPsych/plugins/jspsych-fullscreen.js"></script>
     <link href="./jspsych.css" rel="stylesheet" type="text/css">
     <script src="../../assets/psychophysics/jspsych-psychophysics.js"></script>
+    <!--[if lt IE 9]>
+<script type="text/javascript" src="../../assets/js/jSignature/flashcanvas.js"></script>
+<![endif]-->
+    <script src="../../assets/js/jSignature/jSignature.min.js"></script>
     <style>
         .add_{
             font-size: 25px;
@@ -64,7 +69,7 @@
 <body style="text-align:center;">
 </body>
 <script>
-    let debug_round = 5;
+    let debug_round = 6;
     let acc = 0.6;// 60进入正式实验
 
 
@@ -673,7 +678,7 @@
                 text-align: right;\
                 font-size: 15px;\
             }";
-
+    let sign;
     let instr = {
         type: "instructions",
         pages: [
@@ -692,7 +697,7 @@
             <p class='para'>2. 练习部分与实验任务。</p>\
             <p class='para'>本次实验中，您需要完成一个匹配任务。</p>\
             <p class='para'>在这个任务中，屏幕中央会再现“+”，“+”上方面会现在几何图形中的一个，下方会出现人物标签中的一个，您的任务是判断几何图形与人物标签是否与您学习到的关系相匹配；匹配按一个键，不匹配按另一个键。</p>\
-            <p class='para'>完成匹配任务的练习之后，您将完成6组匹配任务，每组包括72次按键反应，中途有10秒的停顿，您可以根据自己的状态选择休息。完成一组任务大约需要XX分钟，整个实验将持续大约XX分钟。</p>\
+            <p class='para'>完成匹配任务的练习之后，您将完成6组匹配任务，每组包括72次按键反应，中途有10秒的停顿，您可以根据自己的状态选择休息。完成一组任务大约需要2分钟，整个实验将持续大约20分钟。</p>\
             <p class='para'>4. 问卷填写</p>\
             <p class='para'>按键实验结束之后，还需要您填写一些相关的问卷，填写问卷时，请您在认真阅读题目之后，根据您的直觉进行回答，所有的回答没有正误之分，只要能反映您的真实情况即可。</p>\
             <p class='para'>如果对本实验有不清楚之处，请向实验员咨询。</p>\
@@ -703,9 +708,9 @@
             <p class='title'>参与实验知情同意书</p>    \
             <p class='para'><strong>调查目的：</strong>本次实验的目的是了解社会信息学习对知觉匹配过程的影响。 </p>\
             <p class='para'><strong>您需要做什么：</strong>本实验包括两部分。第一部分，是按键反应的实验，这个阶段，您将学习一系列几何图形与其他信息的联结关系。记住这种联结关系之后，您需要完成图形－文字匹配任务，具体任务说明见指导语部分。第二部分，您需要完成一系列问卷。 </p>\
-            <p class='para'><strong>所需时间：</strong>本实验需要大约XXX分钟。 </p>\
+            <p class='para'><strong>所需时间：</strong>本实验需要大约20分钟。 </p>\
             <p class='para'><strong>风险：</strong>参加本次实验没有任何可预见的风险，但可能由于实验任务而感到疲劳或者无聊。 </p>\
-            <p class='para'><strong>收益：</strong>您在本实验中主要收益是您对于科学研究的贡献！同时，为了补偿您参加研究中的时间，我们给予您一定的经济补偿（￥XX）。该经济补偿将由XXX）。</p>\
+            <p class='para'><strong>收益：</strong>您在本实验中主要收益是您对于科学研究的贡献！同时，为了补偿您参加研究中的时间，我们给予您一定的经济补偿（￥<span style='color: red;'>XX</span>）。该经济补偿将由<span style='color: red;'>XXX</span>）。</p>\
             <p class='para'><strong>隐私：</strong>您在本次调查中给出的所有有信息将完全保密。您的信息将将会被编码、您的名字也不会在任何报告中出现。调查结束后，去除所有个人信息的数据将会公布出来，用于其他研究来使用和评估。</p>\
             <p class='para'><strong>自愿参与：</strong>您对本次调查的参与完全是自愿的。 </p>\
             <p class='para'><strong>退出调查的权利：</strong>您有权在调查中的任何阶段退出本次调查，不会有任何的惩罚，我们会根据完成实验的时间，补偿您在本实验室所费时间。</p>\
@@ -714,26 +719,48 @@
             <p class='para foot'>南京师范大学心理学院•计算社会知觉实验室</p>\
             </div>",
             "<div style='color: white;'>\
-                <style>" + ss + "\
+                <style Onload='load();'>" + ss + "\
             </style>    \
-            <p class='title'>公开数据知情同意书\
+            <p class='title'>公开数据知情同意书</p>\
             <p class='para'>本次研究的费用来自于政府的科研资助，也就是来自于纳税人，本实验的程序编写来自于本研究团队，而本次实验的数据提供者是您和其他的参与者。因此，我们认为，本次实验的实验数据的所有者是您和本研究团队。如果您原意公开数据，我们也将会致力于让本研究的数据公开并且能为其他的研究者使用，使其对科研界以及人类社会的贡献最大化。\
             <p class='para'>如果公开本实验的数据，则您在本研究中所提供的数据和样本未来可能会被其他研究项目使用。未来的这些项目也许会与本研究的问题相关，也有可能无关。通过互联网和完全公开的数据库，我们将完全共享本次研究中的数据。\
             <p class='para'>共享的数据中不会出现您的姓名，而仅以代号显示，所以他人不会获知您的姓名，也无法将数据与您进行对应。此外，我们也将对其他敏感信息进行保密，避免了解您的人通过某些信息猜测到哪些是您的数据。\
-            <p class='para'>如果您改变主意并想将此同意书撤回（您可以通过拨打『某号码』致电『本研究的主要负责人PI XXXX』来执行此操作），我们将不会录入关于您的任何额外数据。如果您在数据被录入数据库之前申请撤回，您的数据将能够被及时删除。请注意，所有已经共享给其他研究者或公众的数据和研究结果已经匿名处处理，将不能够再被销毁、退出或撤回。\
+            <p class='para'>如果您改变主意并想将此同意书撤回（您可以通过<span style='color: red;'>拨打『某号码』致电『本研究的主要负责人PI XXXX』</span>来执行此操作），我们将不会录入关于您的任何额外数据。如果您在数据被录入数据库之前申请撤回，您的数据将能够被及时删除。请注意，所有已经共享给其他研究者或公众的数据和研究结果已经匿名处处理，将不能够再被销毁、退出或撤回。\
             <p class='para'>同意参与本研究，意味着您的数据将可能会在其他研究中被重复使用，这些研究可能会让人类社会更好的研究。极有可能，使用您所共享数据的研究会开发出新的诊断量表、新药物或其他产出。但是如果出现这些情况，您本人不会得到这些产品所带来的任何利润，也不会获得这些产品的任何所有权。\
             <p class='para'>根据我们充分了解到的情况，我们向公众共享的数据中将不会包含能够直接识别出您身份的信息。**数据中没有您的名字、只有编码的数字，因此他人不会知道您的名字或者知道哪个数据是您。此外，数据中不会包括我们认为可能会让了解您的人猜测到哪个数据属于您的信息，比如您的面部特征或参与研究的日期等。如果我们就本研究撰写报告、文章，或者将本次研究的数据分享给他人，我们也将确保您不会被识别出来。\
             <p class='para'>然而，非法的安全破坏（比如，网络入侵或网络攻击）也导致他人将您的数据识别出来。但是，这种风险很低，因为我们会将您的数据储存在安全的数据库；并且，您的身份信息与数据是分开存储的，只有一个代码可以将二者联系起来。\
-            <p class='para'>您数据的隐私部分（包括姓名，联系方式等）将至少被安全保存<X>年。在该期限后，我们将会销毁这些信息以保护您的隐私。\
+            <p class='para'>您数据的隐私部分（包括姓名，联系方式等）将至少被安全保存<span style='color: red;'>&#60;X&#62;</span>年。在该期限后，我们将会销毁这些信息以保护您的隐私。\
             <p class='para'>是否让我们使用及分享您的数据将完全由您自愿决定。但是，参加本研究的前提是您愿意使用这种方式来分享您的数据。如果您不愿意，您将无法参加这项研究。\
             <p class='para'>如果您在下方签名，代表您同意向未来的研究共享您的数据，同意与来自世界各地研究机构的研究者共享您的数据。这些未来研究的细节、结果和应用均是未知的。\
+            <div id='signature' style='height: 50%;'></div>\
+            <button type='button' class='jspsych-btn' onclick='a();'>签名</button>\
+            <button type='button' class='jspsych-btn' onclick='reset()'>清除</button>\
             </div>"
         ],
+        on_finish: function (data){
+            data.sign = sign;
+        },
         show_clickable_nav: true,
         allow_backward: true,
         button_label_previous: "返回",
         button_label_next: "继续"
     };
+    function load() { 
+        document.getElementsByTagName("button")[3].disabled = true;
+    }
+    function a (){
+        $("#signature").jSignature();
+        document.getElementsByTagName("button")[0].disabled = true;
+        document.getElementsByTagName("button")[3].disabled = false;
+        // console.log(document.getElementsByClassName("jSignature")[0]);
+        // reset();
+    }
+    function reset () {
+        $("#signature").jSignature("reset");
+        document.getElementsByTagName("button")[3].disabled = true;
+        document.getElementsByTagName("button")[0].disabled = false;
+        // document.getElementsByClassName("jSignature")[0].onmouseup = function(){sign = $("#signature").jSignature("getData", "svgbase64")[1];}
+    }
     timeline.push(enterFullscreenMode,  welcome, instr); // 开头，数据收集
 
     let experinumber = {
