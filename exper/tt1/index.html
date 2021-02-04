@@ -13,9 +13,6 @@
     <script src="../../assets/jsPsych/plugins/jspsych-fullscreen.js"></script>
     <link href="./jspsych.css" rel="stylesheet" type="text/css">
     <script src="../../assets/psychophysics/jspsych-psychophysics.js"></script>
-    <!--[if lt IE 9]>
-<script type="text/javascript" src="../../assets/js/jSignature/flashcanvas.js"></script>
-<![endif]-->
     <script src="../../assets/js/jSignature/jSignature.min.js"></script>
     <style>
         .add_{
@@ -69,6 +66,10 @@
 <body style="text-align:center;">
 </body>
 <script>
+    if (window.screen.height !== 900){
+        alert("你的电脑分辨率的高不为900，请调制900后再进行实验，如果不会调，请询问注视方法，谢谢～");
+        location.reload();
+    }
     let debug_round = 6;
     let acc = 0.6;// 60进入正式实验
 
