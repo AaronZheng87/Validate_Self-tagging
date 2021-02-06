@@ -66,9 +66,12 @@
 <body style="text-align:center;">
 </body>
 <script>
-    let size_proportion = window.screen.height / 900;
-    let debug_round = 6;
-    let acc = 0.6;// 60进入正式实验
+    let size_proportion = (window.screen.height / 900) - 0.1;
+    // 0.1 消除 滚动框
+    let debug_round = 1;
+    let acc = 0.4;// 60进入正式实验
+    // debug版本 正式版 上面数值为 6 0.6
+    // debug版本 正式版 需要修改 965
 
 
 
@@ -693,16 +696,15 @@
             <p class='para'>您好，欢迎参加本次实验。为充分保障您的权利，在以下关于实验的介绍结束后，您看到两份知情同意书。一份表示您已经了解本研究的内容及潜在风险；另一份表示您同意本研究的数据共享计划。如果您选择继续实验，则表示您已经清楚两份知情同意书的内容并同意。</p>\
             <p class='para'>以下是关于实验的介绍：</p>\
             <p class='para'>本实验的是为了探索社会学习（即将图形与具有社会意义的刺激联系起来）对知觉反应速度的影响。在本实验中，您需要完成如下任务：</p>\
-            <p class='para'>1. 您将学习几何图形与不同人物标签的对应关系。其中几何图形包括三角形、正方形、圆形；人物标签包括：好人、常人和坏人。其中，</p>\
-            <p class='para'>好人代表的是一个道德品格高尚的人；</p>\
-            <p class='para'>常人代表的是一个道德品格普通的人；</p>\
-            <p class='para'>坏人代表的是一个道德品格败坏的人；</p>\
+            <p class='para'>首先. 您将学习几何图形与不同人物标签的对应关系。其中几何图形包括三角形、正方形、圆形；人物标签包括：好人、常人和坏人。其中，</p>\
+            <p class='para' style='text-indent: 4em;'>好人代表的是一个道德品格高尚的人；</p>\
+            <p class='para' style='text-indent: 4em;'>常人代表的是一个道德品格普通的人；</p>\
+            <p class='para' style='text-indent: 4em;'>坏人代表的是一个道德品格败坏的人；</p>\
             <p class='para'>图形与人物标签的具体对应关系会在实验开始前呈现，您记住了图形与人物标签的对应关系之后，按空格键进入到实验部分。</p>\
-            <p class='para'>2. 练习部分与实验任务。</p>\
+            <p class='para'>进入实验部分后，您需要完成一个匹配任务。</p>\
             <p class='para'>本次实验中，您需要完成一个匹配任务。</p>\
             <p class='para'>在这个任务中，屏幕中央会再现“+”，“+”上方面会现在几何图形中的一个，下方会出现人物标签中的一个，您的任务是判断几何图形与人物标签是否与您学习到的关系相匹配；匹配按一个键，不匹配按另一个键。</p>\
-            <p class='para'>完成匹配任务的练习之后，您将完成6组匹配任务，每组包括72次按键反应，中途有10秒的停顿，随后您可以根据自己的状态选择休息。完成一组任务大约需要2分钟，整个实验将持续大约20分钟。</p>\
-            <p class='para'>4. 问卷填写</p>\
+            <p class='para'>为了保证您能顺利完成任务，您需要先练习这个匹配任务。练习熟练后，您将完成6组匹配任务，每组包括72次按键反应，中途有10秒的停顿，随后您可以根据自己的状态选择休息。完成一组任务大约需要3分钟，整个实验将持续大约24分钟。\n</p>\
             <p class='para'>按键实验结束之后，还需要您填写一些相关的问卷，填写问卷时，请您在认真阅读题目之后，根据您的直觉进行回答，所有的回答没有正误之分，只要能反映您的真实情况即可。</p>\
             <p class='para'>如果对本实验有不清楚之处，请向实验员咨询。</p>\
             </div>",
@@ -720,7 +722,7 @@
             <p class='para'><strong>退出调查的权利：</strong>您有权在调查中的任何阶段退出本次调查，不会有任何的惩罚，我们会根据完成实验的时间，补偿您在本实验室所费时间。</p>\
             <p class='para'><strong>如何退出：</strong>如果您决定退出本次调查，请告知实验员，我们会立即终止实验。 如果您有任何疑问，请联系：胡传鹏博士（南京师范大学心理学院，江苏省南京市鼓楼区宁海路122号，210024；Email: hcp4715@hotmail.com；Tel: 15910258380） </p>\
             <p class='para'><strong>同意书：</strong>我同意参与上述的调查，并通过点击“继续”按键表示我同意参与本实验。 </p>\
-            <p class='para foot'>南京师范大学心理学院•计算社会知觉实验室</p>\
+            <p class='para foot'>南京师范大学心理学院•计算社会认知实验室</p>\
             </div>",
             "<div style='color: white;'>\
                 <style>" + ss + "\
@@ -751,7 +753,7 @@
             varname:'experinumber',
         },
 
-        preamble:"<p style =' color : white'>你的实验编号是</p>",
+        preamble:"<p style =' color : white'>你分配到的实验编号是</p>",
         html:"<p><input name='Q0' type='number' value='0001;' required/></p>",
         button_label:"继续",
         on_finish: function addRespFromSurvey(data) {
@@ -764,12 +766,9 @@
         data:{
             varname:'subjectnumber',
         },
-        preamble:"<p style = 'color : white'>你的编号是</p>",
+        preamble:"<p style = 'color : white'>分配到的被试编号是</p>",
         html:"<p><input name='Q0' type='number' value='' id='dawd' required/></p>",
         button_label:"继续",
-        on_load: function (){ 
-            document.getElementById("dawd").value = JSON.parse(jsPsych.data.get().last(1).values()[0].responses)["Q0"];
-        },
         on_finish: function addRespFromSurvey(data) {
             data.response = parseInt(data.button_pressed) + 1;
             data.save = true;
@@ -844,7 +843,7 @@
 
         }
     };
-    timeline.push(experinumber, subjectnumber, number_of_experiment, sex, birth, education); // 信息收集
+    // timeline.push(experinumber, subjectnumber, number_of_experiment, sex, birth, education); // 信息收集
 
 
     let instructions1 = {
@@ -907,7 +906,7 @@
                 startX: "center",
                 startY: 550 * size_proportion,
                 content: jsPsych.timelineVariable("item"),
-                font: "50px 'Arial'",
+                font: (50*size_proportion).toString() + "px 'Arial'",
                 text_color: 'white',
                 show_start_time: 1000, // ms after the start of the trial
                 show_end_time: 1100
@@ -957,12 +956,12 @@
             let accuracy = jsPsych.data.get().filter({correct: true, test_part: "test" + (frequency)}).count() / jsPsych.data.get().filter({test_part: "test" + (frequency)}).count();
             console.log(accuracy);
             frequency += 1;
-            if (accuracy <= acc && frequency<=1) {
+            if (accuracy >= acc && frequency<=1) {
                 return true;
             } else if (accuracy >= acc) {
                 jsPsych.pauseExperiment();
                 jsPsych.addNodeToEndOfTimeline({
-                    timeline: [feedback_all, rest, trial2, rest1, trial2, rest1, trial2, rest1, trial2, rest1, trial2, rest1, trial2]
+                    timeline: [feedback_all, rest, trial2, rest1, trial2]
                 }, jsPsych.resumeExperiment);
             } else {
                 aaaaa = 0;
