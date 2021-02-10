@@ -750,28 +750,16 @@
     let experinumber = {
         type:"survey-html-form",
         data:{
-            varname:'experinumber',
-        },
-
-        preamble:"<p style =' color : white'>你分配到的实验编号是</p>",
-        html:"<p><input name='Q0' type='number' value='0001;' required/></p>",
-        button_label:"继续",
-        on_finish: function addRespFromSurvey(data) {
-            data.response = parseInt(data.button_pressed) + 1;
-            data.save = true;
-        }
-    };
-    let subjectnumber ={
-        type:"survey-html-form",
-        data:{
             varname:'subjectnumber',
         },
-        preamble:"<p style = 'color : white'>分配到的被试编号是</p>",
-        html:"<p><input name='Q0' type='number' value='' id='dawd' required/></p>",
+        preamble:"<p style =' color : white'>你分配到的实验编号是</p>",
+        html:"<p><input name='Q0' type='text' value='v01' disabled='disabled' /></p><p><input name='Q1' type='number' value='0001' required/></p>",
         button_label:"继续",
         on_finish: function addRespFromSurvey(data) {
             data.response = parseInt(data.button_pressed) + 1;
             data.save = true;
+            let pp = JSON.parse(data.responses);
+            data.number = pp.Q0 + pp.Q1.padStart(4, "0")
         }
     };
     let number_of_experiment ={
@@ -788,6 +776,19 @@
             data.response = parseInt(data.button_pressed) + 1
         }
 
+    };
+    let person_name = {
+        type:"survey-html-form",
+        data:{
+            varname:'name',
+        },
+        preamble:"<p style =' color : white'>你的名字是</p>",
+        html:"<p><input name='Q0' type='text' value='' required/></p>",
+        button_label:"继续",
+        on_finish: function addRespFromSurvey(data) {
+            data.response = parseInt(data.button_pressed) + 1;
+            data.save = true;
+        }
     };
     let sex = {
         type: 'html-button-response',
@@ -843,7 +844,7 @@
 
         }
     };
-    // timeline.push(experinumber, subjectnumber, number_of_experiment, sex, birth, education); // 信息收集
+    timeline.push(experinumber, number_of_experiment, person_name, sex, birth, education); // 信息收集
 
 
     let instructions1 = {
