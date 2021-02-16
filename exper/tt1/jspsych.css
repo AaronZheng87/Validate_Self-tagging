@@ -9,10 +9,11 @@
 
 
 .content_box{
-  width: 800px;
+  /* width: 800px;
   overflow-y:auto;
   height: 800px;
-  /* max-height: 100vh; */
+  max-height: 100vh; */
+  padding-inline: 15%;
 }
 
 /* Container holding jsPsych content */
