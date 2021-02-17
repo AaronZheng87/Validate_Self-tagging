@@ -9,11 +9,14 @@
 
 
 .content_box{
-  /* width: 800px;
+  width: 600px;
   overflow-y:auto;
-  height: 800px;
-  max-height: 100vh; */
-  padding-inline: 15%;
+  height: 600px;
+  border: solid 2px #fff;
+  overflow: hidden;
+  padding: 10px;
+  overflow-y: auto;
+
 }
 
 /* Container holding jsPsych content */
