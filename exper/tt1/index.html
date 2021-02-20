@@ -993,9 +993,10 @@
                         let accuracy = Math.round(correct_trials.count() / trials.count() * 100);
                         let rt = Math.round(correct_trials.select('rt').mean());
                         frequency += 1;
-                        return "<p style = 'color:white'>你正确回答了" + accuracy + "% 的试次。</p>" +
-                            "<p style = 'color:white'>你的平均反应时为" + rt + "毫秒。</p>" +
-                            "<p style = 'color:white'>请按任意键继续实验!</p>";
+                        return "<style>.context{color:white; font-size: 30px;}</style>\
+                            <div><p class='context'>你正确回答了" + accuracy + "% 的试次。</p>" +
+                            "<p class='context'>你的平均反应时为" + rt + "毫秒。</p>" +
+                            "<p class='context'>请按任意键继续实验!</p></div>";
                     }
                 }; // 练习结束反馈阶段
                 jsPsych.pauseExperiment();
