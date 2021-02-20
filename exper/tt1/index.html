@@ -68,8 +68,8 @@
 <script>
     let size_proportion = (window.screen.height / 900) - 0.1;
     // 0.1 消除 滚动框
-    let debug_round = 2;
-    let acc = 0.2;// 60进入正式实验
+    let debug_round = 6;
+    let acc = 0.6;// 60进入正式实验
     // debug版本 正式版 上面数值为 6 0.6
     // debug版本 正式版 需要修改 965
 
@@ -759,7 +759,8 @@
             data.save = true;
             let pp = JSON.parse(data.responses);
             data.number = pp.Q0 + pp.Q1.padStart(4, "0");
-            subject_number = pp.Q0 + pp.Q1.padStart(4, "0");
+            //subject_number = pp.Q0 + pp.Q1.padStart(4, "0");
+            subject_number = "v01"+pp.Q1
         },
         on_load: function () { 
             let bb = document.getElementById("jspsych-content");
