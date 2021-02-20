@@ -68,8 +68,8 @@
 <script>
     let size_proportion = (window.screen.height / 900) - 0.1;
     // 0.1 消除 滚动框
-    let debug_round = 6;
-    let acc = 0.6;// 60进入正式实验
+    let debug_round = 2;
+    let acc = 0.2;// 60进入正式实验
     // debug版本 正式版 上面数值为 6 0.6
     // debug版本 正式版 需要修改 965
 
@@ -856,11 +856,11 @@
     };
     timeline.push(experinumber, number_of_experiment, person_name, sex, birth, education, {
         type: "html-keyboard-response",
-        stimulus: "为了在实验前，保证按键准确，请先按键盘上M键",
+        stimulus: "<p style ='font-size:25px; color:white'>为了保证实验中按键准确，请您按键盘上M键</p>",
         choices: ["m"]
     }, {
         type: "html-keyboard-response",
-        stimulus: "为了在实验前，保证按键准确，请再按键盘上N键",
+        stimulus: "<p style ='font-size:25px; color:white'>为了保证实验中按键准确，请您按键盘上N键</p>",
         choices: ["n"]
     }); // 信息收集
 
@@ -985,7 +985,7 @@
                         // aaaaa = 1;
                         frequency -= 1;
                         let trials = jsPsych.data.get().filter({
-                            test_part: 'prac_' + aaaaa.toString()
+                            block: 'test_' + aaaaa.toString()
                         });
                         let correct_trials = trials.filter({
                             correct: true
@@ -1060,7 +1060,7 @@
             },
             {
                 type: "html-keyboard-response",
-                stimulus: "<p style = 'color : white; font-size : 30px'>休息结束，请按 m 或 n 键开始实验</p><p>请保证手指大拇指 放在 m n 键中间上方 以随时准备实验</p>",
+                stimulus: "<p style = 'color : white; font-size : 30px'>休息结束，请按 m 或 n 键开始实验</p><p style = 'color:yellow'>请保证您的手指轻放在 m和n 键上 以随时准备实验</p>",
                 choices: jsPsych.ALL_KEYS
             }
         ]
