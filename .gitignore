@@ -1,6 +1,12 @@
-.DS_Store
-*.DS_Store
 .idea/
+
+# Mac
+.DS_Store
+# Data
+*data/
+*data[0-9]/
+*.Rhistory
+
 # Build and Release Folders
 bin-debug/
 bin-release/
